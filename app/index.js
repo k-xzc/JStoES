@@ -65,7 +65,7 @@ function getJson(page) {
   return {
     "page": page,
     "latency": getRandomInt(20, 1000),
-    "timestamp": dateFormat(new Date(), "yyyymmdd'T'HHMMssZ")
+    "timestamp": dateFormat(new Date(), "yyyy-mm-dd'T'HH:MM:ssZ")
   }
 }
 
