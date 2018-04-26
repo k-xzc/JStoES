@@ -16,6 +16,7 @@ app.get('/home', function (req, res) {
  var json = getJson("home")
  postToEs(json).then(function(a){
    console.log(a)
+   console.log(json)
  })
 
 res.send("home page")
@@ -25,6 +26,7 @@ app.get('/about', function (req, res) {
   var json = getJson("about")
  postToEs(json).then(function(a){
    console.log(a)
+   console.log(json)
  })
 
 res.send("about page")
@@ -34,6 +36,7 @@ app.get('/contact', function (req, res) {
 var json = getJson("contact")
  postToEs(json).then(function(a){
    console.log(a)
+   console.log(json)
  })
 
 res.send("contact page")
@@ -43,6 +46,7 @@ app.get('/main', function (req, res) {
 var json = getJson("main")
  postToEs(json).then(function(a){
    console.log(a)
+   console.log(json)
  })
 
 res.send("main page")
