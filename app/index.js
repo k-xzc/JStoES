@@ -15,10 +15,10 @@ app.use(require('express-promise')());
 app.get('/home', function (req, res) {
  var json = getJson("home")
  postToEs(json).then(function(a){
-   console.log("home page")
+   console.log(a)
  })
 
-res.send(json)
+res.send("home page")
 })
 
 app.get('/about', function (req, res) {
@@ -42,10 +42,10 @@ res.send("contact page")
 app.get('/main', function (req, res) {
 var json = getJson("main")
  postToEs(json).then(function(a){
-   console.log("main page")
+   console.log(a)
  })
 
-res.send(json)
+res.send("main page")
 })
 
 function postToEs(json) {
