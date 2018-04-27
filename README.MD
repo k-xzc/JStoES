@@ -1,6 +1,6 @@
 # JStoES
 
-Deminstration how to use NodeJS to send data to ElasticSearch & Vitualize it on Grafanaa
+Demonstration how to use NodeJS to send data to ElasticSearch & Vitualize it on Grafanaa
 
 # Prerequisite
 
