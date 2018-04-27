@@ -1,56 +1,62 @@
 var express = require('express')
-var port  = 8000 
+var port  = 9090
 var app = express()
 var bodyParser = require('body-parser');
 var dateFormat = require('dateformat');
 var rp = require('request-promise');
-
 var host ="http://localhost:9200"
-var index ="web_site_performance"
-var type ="test"
+var index ="bx"
+var type ="currency"
 app.use(bodyParser.json());
 app.use(require('express-promise')());
 
-
-app.get('/home', function (req, res) {
- var json = getJson("home")
- postToEs(json).then(function(a){
-   console.log(a)
+app.get('/getcurrency', function (req, res) {
+ getBx().then(function(cur){
+   var json = getJson(cur[1])
    console.log(json)
+   postToEs(json).then(function(a){
+   console.log(a)
+   })
+   json= getJson(cur[21])
+          console.log(json)
+          postToEs(json).then(function(a){
+          console.log(a)
+   })
+    json= getJson(cur[25])
+          console.log(json)
+          postToEs(json).then(function(a){
+          console.log(a)
+   })
+   json= getJson(cur[26])
+             console.log(json)
+             postToEs(json).then(function(a){
+             console.log(a)
+   })
+   json= getJson(cur[27])
+             console.log(json)
+             postToEs(json).then(function(a){
+             console.log(a)
+   })
+   json= getJson(cur[29])
+             console.log(json)
+             postToEs(json).then(function(a){
+             console.log(a)
+   })
  })
-
-res.send("home page")
+res.send("done")
 })
 
-app.get('/about', function (req, res) {
-  var json = getJson("about")
- postToEs(json).then(function(a){
-   console.log(a)
-   console.log(json)
- })
-
-res.send("about page")
-})
-
-app.get('/contact', function (req, res) {
-var json = getJson("contact")
- postToEs(json).then(function(a){
-   console.log(a)
-   console.log(json)
- })
-
-res.send("contact page")
-})
-
-app.get('/main', function (req, res) {
-var json = getJson("main")
- postToEs(json).then(function(a){
-   console.log(a)
-   console.log(json)
- })
-
-res.send("main page")
-})
+function getBx() {
+  url = "https://bx.in.th/api/"
+  return rp({
+        uri: url,
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        method: "GET",
+        json: true
+    })
+}
 
 function postToEs(json) {
   url = host + "/" + index + "/" + type
@@ -65,16 +71,14 @@ function postToEs(json) {
     })
 }
 
-function getJson(page) {
+function getJson(a) {
   return {
-    "page": page,
-    "latency": getRandomInt(20, 1000),
+    "currency_name": a.secondary_currency,
+    "last_price": a.last_price,
+    "bids":a.orderbook.bids.highbid,
+    "asks":a.orderbook.asks.highbid,
     "timestamp": dateFormat(new Date(), "yyyy-mm-dd'T'HH:MM:ss'Z'")
   }
-}
-
-function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 app.listen(port, () => console.log(`listening on port ${port}!`))
