@@ -10,8 +10,8 @@ var type ="currency"
 app.use(bodyParser.json());
 app.use(require('express-promise')());
 
-app.get('/version',{
- res.send("version : xxxxxxx")
+app.get('/version', function (req, res) {
+    res.send("version : xxxxxxx")
 })
 
 
