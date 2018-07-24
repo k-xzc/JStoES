@@ -10,6 +10,11 @@ var type ="currency"
 app.use(bodyParser.json());
 app.use(require('express-promise')());
 
+app.get('/version'){
+ res.send("version : xxxxxxx")
+}
+
+
 app.get('/getcurrency', function (req, res) {
  getBx().then(function(cur){
    var json = getJson(cur[1])
