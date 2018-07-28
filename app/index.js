@@ -4,9 +4,6 @@ var app = express()
 var bodyParser = require('body-parser');
 var dateFormat = require('dateformat');
 var rp = require('request-promise');
-var host ="http://localhost:9200"
-var index ="bx"
-var type ="currency"
 app.use(bodyParser.json());
 app.use(require('express-promise')());
 
