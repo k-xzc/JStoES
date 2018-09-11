@@ -7,13 +7,19 @@ var rp = require('request-promise');
 var host ="http://localhost:9200"
 var index ="bx"
 var type ="currency"
+var os = require("os");
+var hostname = os.hostname();
 app.use(bodyParser.json());
 app.use(require('express-promise')());
+
 
 app.get('/version', function (req, res) {
     res.send("version : xxxxxxx")
 })
 
+app.get('/', function (req, res){
+    res.send("hostname :" + hostname)
+})
 
 app.get('/getcurrency', function (req, res) {
  getBx().then(function(cur){
